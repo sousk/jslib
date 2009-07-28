@@ -15,6 +15,7 @@ $.extend(window.config, {
     },
     selectors: {
       box:    '.pager',
+      col_anchors: '.pager a',
       cols:  '.pager > li.col',
       col_first: '.pager > li.col_first',
       col_last: '.pager > li.col_last',
