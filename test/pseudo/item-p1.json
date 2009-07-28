@@ -1,0 +1,19 @@
+{
+  pager: {
+    current:   1,
+    per_page:  5,
+    max:   23
+  },
+  items: [
+    {id: '1', name: "foo", link: '/path/to/item/1', 
+      lat: 35.65851667125012, lng:139.70609664916992},
+    {id: '9', name: "foo1", link: '/path/to/item/9',
+      lat: 35.66116666873544, lng:139.70369338989258},
+    {id: '6', name: "foo2", link: '/path/to/item/6',
+      lat: 35.65558762434797, lng:139.69914436340332},
+    {id: '108', name: "foo3", link: '/path/to/item/108',
+      lat: 35.65551788382666, lng:139.7084140777588},
+    {id: '78', name: "foo4", link: '/path/to/item/78',
+      lat: 35.654402027203815, lng:139.70515251159668}    
+  ]  
+}
