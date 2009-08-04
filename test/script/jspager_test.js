@@ -50,6 +50,12 @@ function jspager_test () {
     last:    12
   };
   
+  // << < 1 [2] 3 4 5 > >>
+  var param_p2 = {
+    per_page:  6,
+    current:   2,
+    last:    12
+  };
 
 
   //----------------------------------------------------------
@@ -94,35 +100,40 @@ function jspager_test () {
     
     pager.set_params(param);
     equals(pager.get_num_of_columns(), 5);
-    var cols = pager.gen_column_numbers();
+    var cols = pager.gen_column_indexes();
     // << < 2 3 [4] 5 6 > >>
     same(cols, [2,3,4,5,6], "page numbers matched");
     
     pager.set_params(param_fewpages);
     equals(pager.get_num_of_columns(), 4);
-    var cols = pager.gen_column_numbers();
+    var cols = pager.gen_column_indexes();
     // << < 1 [2] 3 4> >>
     same(cols, [1,2,3, 4], "page numbers matched");
-
+    
     pager.set_params(param_empty);
     equals(pager.get_num_of_columns(), 1);
-    var cols = pager.gen_column_numbers();
+    var cols = pager.gen_column_indexes();
     // << < [1] > >>
     same(cols, [1], "page numbers matched");
     
     // << < 8 9 10 11 [12] > >>
     pager.set_params(param_last);
     equals(pager.get_num_of_columns(), 5);
-    var cols = pager.gen_column_numbers();
+    var cols = pager.gen_column_indexes();
     same(cols, [8,9,10,11,12], "page numbers matched");
     
     // << < [1] 2 3 4 5 > >>
     pager.set_params(param_first);
     equals(pager.get_num_of_columns(), 5);
-    var cols = pager.gen_column_numbers();
+    var cols = pager.gen_column_indexes();
+    same(cols, [1,2,3,4,5], "page numbers matched");
+    
+    // << < 1 [2] 3 4 5 > >>
+    pager.set_params(param_p2);
+    equals(pager.get_num_of_columns(), 5);
+    var cols = pager.gen_column_indexes();
     same(cols, [1,2,3,4,5], "page numbers matched");
   });
-  
   
   //----------------------------------------------------------
   module("jsPager: update");
@@ -195,6 +206,12 @@ function jspager_test () {
     do_test(
       pager.get('cols'),
       [ has_unlinked_col(1), has_linked_col(2), has_linked_col(3), has_linked_col(4), has_linked_col(5) ]);
+    
+    // << < 1 [2] 3 4 5 > >>
+    pager.update(param_p2);
+    do_test(
+      pager.get('cols'),
+      [ has_linked_col(1), has_unlinked_col(2), has_linked_col(3), has_linked_col(4), has_linked_col(5) ]);
   });
   
   test('short-cut columns', function() {

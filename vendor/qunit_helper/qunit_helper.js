@@ -3,9 +3,32 @@
  * Dual licensed under the MIT and GPL licenses.
  */
 
-var _expect_countup_cn = 0;
+function __test() {};
+
+
 function up(n) {
   return n ? _expect_countup_cn+=n : _expect_countup_cn=0;
+};
+var _expect_countup_cn = 0;
+
+
+function not_empty(expr, msg) {
+  ok(function() {
+    if (! expr) {
+      return false;
+    }
+    // has length
+    else if (typeof expr['length'] == 'number') {
+      return expr.length > 0;
+    }
+    else if (typeof expr == 'number') {
+      return expr > 0;
+    }
+    else {
+      log("got undefined type: "+ typeof expr);
+      return false;
+    }
+  }(), msg);
 };
 
 
